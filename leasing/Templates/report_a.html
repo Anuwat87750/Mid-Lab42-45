@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mt-2 p-1 bg-danger text-white rounded">
+    <h4>ประวัติการเช่ายืม</h4>
+</div>
+<div class="container-fluid my-3 justify-content-center align-items-center shadow rounded">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>ชื่อผู้เช่ายืม</th>
+                <th>ที่อยู่</th>
+                <th>เบอร์โทร</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user_buy in uesrbuy %}
+                <tr>
+                    <td>{{ user_buy.username }}</td>
+                    <td>{{ user_buy.address }}</td>
+                    <td>{{ user_buy.tal }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

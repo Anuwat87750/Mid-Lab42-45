@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid my-3 justify-content-center align-items-center shadow rounded">
+<form action="" method="POST">
+{% csrf_token %}
+<h5>เพิ่มข้อมูลรองเท้า</h5>
+ชื่อรุ่นรองเท้า : <input type="text" name="type_name" required>
+<button type="submit" class="btn btn-success" >บันทึก</button>
+</form>
+</div>
+{% endblock  %}

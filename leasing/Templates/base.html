@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Shoe Rental System{% endblock %}</title>
+    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link 
+      rel="stylesheet" 
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+      body {
+        font-family: "Noto Sans Thai", sans-serif;
+      }
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+      <!-- Logo/Brand on the Left -->
+      <a class="navbar-brand" href="#">
+        <span class="material-symbols-outlined">
+          footprint
+          </span>
+          ระบบการเช่ายืมรองเท้า
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="fa fa-home" aria-hidden="true"></i> หน้าแรก
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/report">
+              <i class="fa fa-tachometer" aria-hidden="true"></i> รายงานการเช่า
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/buy_drugu">
+              <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> เช่ารองเท้า
+            </a>
+          </li>
+          {% if user.is_staff %}
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-wrench" aria-hidden="true"></i> จัดการข้อมูลรองเท้า
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/manage_drug">
+                      <i class="fa fa-wrench" aria-hidden="true"></i> ข้อมูลรองเท้า
+                  </a>
+                  <a class="dropdown-item" href="/admin">
+                      <i class="fa fa-plus" aria-hidden="true"></i> เพิ่มข้อมูลการเช่ารองเท้า
+                  </a>
+                  <a class="dropdown-item" href="/manage_type">
+                      <i class="fa fa-wrench" aria-hidden="true"></i> แก้ไขข้อมูลการเช่ายืม
+                  </a>
+              </div>
+          </li>
+      {% endif %}
+      
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="logout">ออกจากระบบ</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">เข้าสู่ระบบ</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    {% include 'msg.html' %}
+    {% block content %}
+      {# Include the appropriate HTML templates for shoe rental system content #}
+      {% include "drug_data.html" %}
+    {% endblock %}
+  </div>
+</body>
+</html>

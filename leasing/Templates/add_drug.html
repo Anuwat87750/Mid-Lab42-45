@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">เพิ่มข้อมูลรองเท้า</h5>
+                    <form action="{% url 'your_submit_url' %}" method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="drug_name" class="form-label">ชื่อรุ่นรองเท้า:</label>
+                            <input type="text" class="form-control" name="drug_name" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="drug_type" class="form-label">ประเภทรองเท้า:</label>
+                            <select class="form-select" name="drug_type" required>
+                                {% for i in drug_type %}
+                                    <option value="{{ i.type_id }}">{{ i.type_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="drug_qty" class="form-label">จำนวน:</label>
+                            <input type="number" class="form-control" name="drug_qty" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="drug_expired" class="form-label">วันหมดอายุ:</label>
+                            <input type="date" class="form-control" name="drug_expired" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success">บันทึก</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

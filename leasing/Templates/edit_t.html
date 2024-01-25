@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid my-3 justify-content-center align-items-center shadow rounded">
+    <h5>แก้ไขประเภทรองเท้า</h5>
+    <form action="" method="POST">
+        {% csrf_token %}
+        ชื่อประเภทรองเท้ารุ่นใหม่ : <input type="text" name="type_name" required>
+
+        <button type="submit" class="btn btn-success">บันทึก</button>
+    </form>
+</div>
+{% endblock %}

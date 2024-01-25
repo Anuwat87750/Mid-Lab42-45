@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- buy_drug.html -->
+
+<!-- buy_drugu.html -->
+<form method="POST">
+    {% csrf_token %}
+    <div class="container">
+        <div class="mt-2 p-1 bg-danger text-white rounded">
+            <h5>ขอเข้าเช่า</h5>
+        </div>
+        <div class="container-fluid my-3 justify-content-center align-items-center shadow rounded">
+            <label for="drug_id">รุ่นรองเท้า :</label>
+            <select name="drug_id" id="drug_id">
+                {% for drug in drugs %}
+                    <option value="{{ drug.drug_id }}">{{ drug.drug_name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="quantity">จำนวน :</label>
+            
+            <input type="number" min="0" max="10" name="quantity" id="quantity">
+            ชื่อคนเช่ายืม :<input type="text" name="Busername" required>
+            ที่อยู่ :<input type="text" name="Baddress" required>
+            เบอร์โทร : <input type="number" name="Btal" required>
+            <button type="submit" class="btn btn-success" >บันทึก</button>
+        </div>
+    </div>
+</form>
+
+{% endblock content %}
